@@ -6,7 +6,6 @@ const starterPosts = require('../config/posts');
 
 //Clear + Repopulate with starter data
 router.get('/seed', async (req,res) => {
-    console.log(starterPosts)
     try {
         await Posts.deleteMany({});
         await Posts.create(starterPosts);
@@ -15,7 +14,6 @@ router.get('/seed', async (req,res) => {
         console.log(err)
     }
 })
-
 
 router.get('/', async (req,res) => {
     try {
@@ -49,7 +47,7 @@ router.post('/', async (req, res) => {
 router.put('/:id', async(req,res) => {
     try {
         const updatedItem = await Posts.findByIdAndUpdate(req.params.id,req.body);
-        res.json(updatedFruit);
+        res.json(updatedItem);
     } catch (error) {
         res.status(500).json(error);
     }
@@ -58,7 +56,7 @@ router.put('/:id', async(req,res) => {
 router.delete('/:id', async(req, res) => {
     try {
         const deletedItem = await Posts.findByIdAndDelete(req.params.id);
-        res.json(deletedFruit)
+        res.json(deletedItem)
     } catch (error) {
         res.status(500).json(error);
     }

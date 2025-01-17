@@ -1,5 +1,6 @@
 //Init
 require('dotenv').config();
+const fs = require('fs');
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 5000;
@@ -26,28 +27,22 @@ app.use('/api/images', imageRoutes);
 
 
 
-
-
-const fs = require('fs');
 //Getters
 app.get("/", (req, res) => {
     const options = {
-      title: "Rendering Views with Express",
+      title: "Running Posts Server",
       content:
-        "Testerino",
+        "The server is connected",
     };
-    
+
     res.render("index", options);
   });
 
   //Template
-app.engine("index", (filePath, options, callback) => { // define the template engine
+app.engine("index", (filePath, options, callback) => {
     fs.readFile(filePath, (err, content) => {
       if (err) return callback(err);
   
-      // Here, we take the content of the template file,
-      // convert it to a string, and replace sections of
-      // it with the values being passed to the engine.
       const rendered = content
         .toString()
         .replaceAll("#title#", `${options.title}`)
