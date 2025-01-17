@@ -18,7 +18,8 @@ router.get('/seed', async (req,res) => {
 router.get('/', async (req,res) => {
     try {
         const allItems = await Posts.find({});
-        res.json(allItems);
+       res.json(allItems);
+
     } catch (error) {
         res.status(500).json({error});
     }
@@ -28,6 +29,7 @@ router.get('/:id', async(req, res)=> {
     try {
         const singleItem = await Posts.findById(req.params.id);
         res.json(singleItem);
+
     } catch (error) {
         res.status(500).json({error})
     }

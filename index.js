@@ -25,8 +25,6 @@ app.use('/api/posts', postRoutes);
 app.use('/api/images', imageRoutes); 
 
 
-
-
 //Getters
 app.get("/", (req, res) => {
     const options = {
@@ -39,7 +37,7 @@ app.get("/", (req, res) => {
   });
 
   //Template
-app.engine("index", (filePath, options, callback) => {
+app.engine("htm", (filePath, options, callback) => {
     fs.readFile(filePath, (err, content) => {
       if (err) return callback(err);
   
@@ -55,7 +53,7 @@ app.engine("index", (filePath, options, callback) => {
   
 
 app.set("views", "./views"); // specify the views directory
-app.set("view engine", "index"); // register the template engine
+app.set("view engine", "htm"); // register the template engine
 
 //Listen
 app.listen(process.env.PORT, () => {

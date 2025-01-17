@@ -8,6 +8,10 @@ const userSchema  = new mongoose.Schema({
     quote: {
         type: String,
         required: true
+    },
+        id: {
+            type: Number,
+            required: true
     }
 })
 

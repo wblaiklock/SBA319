@@ -26,7 +26,9 @@ router.get('/', async (req,res) => {
 router.get('/:id', async(req, res)=> {
     try {
         const singleItem = await Users.findById(req.params.id);
-        res.json(singleItem);
+        await res.render('index',{ title : req.params.title, content:req.params.text })
+
+//        res.json(singleItem);
     } catch (error) {
         res.status(500).json({error})
     }
